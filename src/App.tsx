@@ -1,10 +1,10 @@
 import './App.css';
-import DisplayUsers from './components/players'; // Import the DisplayUsers component
+import EightBallWinPercents from './components/winpercent';
 
 function App() {
   return (
     <div className="App">
-      <DisplayUsers /> {/* Render the DisplayUsers component */}
+      <EightBallWinPercents />
     </div>
   );
 }
