@@ -1,4 +1,4 @@
-export type EightBallMatch = {
+export type Match = {
     id: string;
     playerID: number | string;
     playerName: string;
@@ -6,7 +6,6 @@ export type EightBallMatch = {
     matchNumber: number | string;
     matchPoints: number | string;
     matchResult: number | string;
-    racksWon: number | string;
     opponentID: number | string;
     opponentMatchPoints: number | string;
     opponentName: number | string;
@@ -15,4 +14,6 @@ export type EightBallMatch = {
     sessionID: number | string;
     dateAdded: string;
     datePlayed: string;
+    racksWon: number | string;//Only used for 8ball
+    pointsWon: number | string;//Only used for 9ball
 }

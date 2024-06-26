@@ -1,10 +1,10 @@
 import './App.css';
-import EightBallWinPercents from './components/winpercent';
+import WinPercents from './components/winpercent';
 
 function App() {
   return (
     <div className="App">
-      <EightBallWinPercents />
+      <WinPercents format="nineball" headerName="Win Percent" />
     </div>
   );
 }

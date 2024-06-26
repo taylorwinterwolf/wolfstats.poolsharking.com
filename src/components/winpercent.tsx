@@ -1,37 +1,48 @@
 import useFetchCollection from '../hooks/fetchData';
-import { EightBallMatch } from '../types/eightBallMatchType';
+import { Match } from '../types/matchType';
 import { Player } from '../types/playerType';
-import { groupMatchesByPlayerID, calcEightWinPercents } from '../functions/functions';
+import { groupMatchesByPlayerID, calcMatchResults } from '../functions/functions';
 
-const EightBallWinPercents = () => {
+type WinPercentsProps = {
+    format: string;
+    headerName: string;
+}
+
+const WinPercents = (props: WinPercentsProps) => {
+    let collectionName = 'eightballmatches';
+    if (props.format === 'nineball'){
+        collectionName = 'nineballmatches';
+    }
+    const { data: matches } = useFetchCollection<Match>(collectionName);
     const { data: players } = useFetchCollection<Player>('players');
-    const { data: matches } = useFetchCollection<EightBallMatch>('eightballmatches');
     const groupedMatches = groupMatchesByPlayerID(matches);
 
     players?.forEach(player => {
         const playerMatches = groupedMatches[player.id];
-        const matchResults = calcEightWinPercents(playerMatches);
+        const matchResults = calcMatchResults(playerMatches);
+        player.matchCount = matchResults.matchCount;
+        player.winsCount = matchResults.winsCount;
+        player.lossCount = matchResults.lossCount;
+        player.tiesCount = matchResults.tiesCount;
         player.winPercent = matchResults.winPercent;
-        player.totalMatches = matchResults.total;
-        player.totalWins = matchResults.winsCount;
     });
 
-    // console.log(players);
-    // console.log(groupedMatches);
+    console.log(groupedMatches);
+    console.log(players);
 
     return (
         <div>
-            <p>Win Percent:</p>
+            <p>{props.headerName}</p>
             {players.map(player => (
                 <div key={player.id}>
-                    <p>{player.completeName} {player.winPercent}% {player.totalWins}/{player.totalMatches}</p>
+                    <p>{player.completeName} {player.winPercent}% {player.winsCount}/{player.matchCount}</p>
                 </div>
             ))}
         </div>
     );
 };
 
-export default EightBallWinPercents;
+export default WinPercents;
 
 
 
