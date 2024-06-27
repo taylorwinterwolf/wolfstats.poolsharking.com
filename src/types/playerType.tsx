@@ -4,11 +4,13 @@ export type Player = {
     fname: string;
     lname: string;
     nickName: string;
-    matchCount: number | string;
-    winsCount: number | string;
-    lossCount: number | string;
-    tiesCount: number | string;
-    winPercent: number | string;
+    matchCount: string;
+    winsCount: string;
+    lossCount: string;
+    tiesCount: string;
+    winPercent: string;
+    lossPercent: string;
+    tiePercent: string;
 }
 
 
