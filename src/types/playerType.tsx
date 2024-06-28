@@ -11,6 +11,9 @@ export type Player = {
     winPercent: string;
     lossPercent: string;
     tiePercent: string;
+    sumMatchPoints: string;
+    sumRacksWon: string;
+    sumPointsMade: string;
 }
 
 

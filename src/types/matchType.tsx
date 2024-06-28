@@ -15,5 +15,5 @@ export type Match = {
     dateAdded: string;
     datePlayed: string;
     racksWon: string;//Only used for 8ball
-    pointsWon: string;//Only used for 9ball
+    pointsMade: string;//Only used for 9ball
 }

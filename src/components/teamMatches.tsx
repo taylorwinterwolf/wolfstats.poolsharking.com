@@ -8,7 +8,7 @@ type TeamMatchesProps = {
 const TeamMatches = (props: TeamMatchesProps) => {
     const teamMatches = props.matches;
     const teamMatchResults = calcMatchResults(props.matches);
-    console.log(teamMatches);
+    //console.log(teamMatches);
     console.log(teamMatchResults);
 
     const grayBox = {
@@ -23,16 +23,16 @@ const TeamMatches = (props: TeamMatchesProps) => {
 
     return (
         <div>
+            <div>Win% {teamMatchResults.winPercent} Tie% {teamMatchResults.tiePercent} Loss% {teamMatchResults.lossPercent}</div>
             {teamMatches.map(match => (
-                <div key={match.id}>
-                    <div className="flex">
-                        <div className="float-left">{match.opposingTeamName}</div>
-                        <div className="w-2 h-2 float-right" style={match.matchResult === '1' ? greenBox : match.matchResult === '0' ? grayBox : goldBox}>{match.matchResult === '1' ? "W" : match.matchResult === '0' ? "L" : "T"}</div>
+                <div key={match.id} className="grid grid-cols-10">
+                    <div className="col-span-9">{match.opposingTeamName}</div>
+                    <div className="col-span-1">
+                        <div className="circle" style={match.matchResult === '1' ? greenBox : match.matchResult === '0' ? grayBox : goldBox}></div>
                     </div>
                 </div>
             ))} 
         </div>
     )
-
 }
 export default TeamMatches;

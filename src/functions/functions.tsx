@@ -1,5 +1,7 @@
 import { Match } from '../types/matchType';
 
+
+
 export function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match[] } {
     return matches.reduce((acc, match) => {
         if (!acc[match.playerID]) {
@@ -10,6 +12,36 @@ export function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match
     }, {} as { [key: string]: Match[] });
 }
 
+
+interface MatchSums {
+    matchPoints: string;
+    racksWon: string;
+    pointsMade: string;
+}
+
+type AllMatchSums = {
+    sumMatchPoints: string;
+    sumRacksWon: string;
+    sumPointsMade: string;
+}
+
+export function getSumMatches<T extends MatchSums>(matches: T[]): AllMatchSums {
+    const matchPoints = matches.reduce((acc, match) => acc + parseInt(match.matchPoints), 0);
+    const sumMatchPoints = matchPoints.toString();
+
+    const racksWon = matches.reduce((acc, match) => acc + parseInt(match.racksWon), 0);
+    const sumRacksWon = racksWon.toString();
+
+    const pointsMade = matches.reduce((acc, match) => acc + parseInt(match.pointsMade), 0);
+    const sumPointsMade = pointsMade.toString();
+    
+    return { sumMatchPoints, sumRacksWon, sumPointsMade};
+}
+
+interface MatchResult {
+    matchResult: string;
+}
+
 type AllMatchResults = {
     matchCount: string;
     winsCount: string;
@@ -18,10 +50,6 @@ type AllMatchResults = {
     winPercent: string;
     lossPercent: string;
     tiePercent: string;
-}
-
-interface MatchResult {
-    matchResult: string;
 }
 
 export function calcMatchResults<T extends MatchResult>(matches: T[]): AllMatchResults {
