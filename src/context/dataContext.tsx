@@ -5,11 +5,11 @@ import { Player } from "../types/playerType";
 import { TeamMatch } from "../types/teamMatchType";
 
 type DataContextTypes = {
-    eightmatches: Match[];
-    ninematches: Match[];
     players: Player[];
     teameightmatches: TeamMatch[];
     teamninematches: TeamMatch[];
+    groupedEightMatches: { [key: string]: Match[] };
+    groupedNineMatches: { [key: string]: Match[] };
 }
 
 const DataContext = createContext<DataContextTypes | null>(null);
@@ -21,7 +21,20 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const { data: teamninematches } = useFetchCollection<TeamMatch>('nineballteammatches');
     const { data: players } = useFetchCollection<Player>('players');
 
-    const value = { eightmatches, ninematches, players, teameightmatches, teamninematches };
+    function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match[] } {
+        return matches.reduce((acc, match) => {
+            if (!acc[match.playerID]) {
+                acc[match.playerID] = [];
+            }
+            acc[match.playerID].push(match);
+            return acc;
+        }, {} as { [key: string]: Match[] });
+    }
+
+    const groupedEightMatches = groupMatchesByPlayerID(eightmatches);
+    const groupedNineMatches = groupMatchesByPlayerID(ninematches);
+
+    const value = { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches };
     
     return<DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

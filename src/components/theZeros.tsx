@@ -18,7 +18,6 @@ const TheZeros = (props: TheZerosProps) => {
             player.threeZeros = theZeros.threeZeros;
         }
     });
-    //console.log(props.players);
 
     let playerZeros = props.players;
 

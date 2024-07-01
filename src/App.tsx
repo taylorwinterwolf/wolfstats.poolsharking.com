@@ -4,15 +4,10 @@ import WinPercents from './components/winpercent';
 import TeamMatches from './components/teamMatches';
 import MatchSum from './components/matchSum';
 import TheZeros from './components/theZeros';
-import { groupMatchesByPlayerID } from './functions/functions';
 
 function App() {
   const dataContext = useDataContext();
-  const { eightmatches, ninematches, players, teameightmatches, teamninematches } = dataContext;
-  const groupedEightMatches = groupMatchesByPlayerID(eightmatches);
-  const groupedNineMatches = groupMatchesByPlayerID(ninematches);
-
-  console.log(groupedNineMatches);
+  const { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches } = dataContext;
 
   return (
     <div className="App">

@@ -1,15 +1,3 @@
-import { Match } from '../types/matchType';
-
-export function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match[] } {
-    return matches.reduce((acc, match) => {
-        if (!acc[match.playerID]) {
-            acc[match.playerID] = [];
-        }
-        acc[match.playerID].push(match);
-        return acc;
-    }, {} as { [key: string]: Match[] });
-}
-
 interface MatchPoints{
     matchPoints: string;
     opponentMatchPoints: string;
