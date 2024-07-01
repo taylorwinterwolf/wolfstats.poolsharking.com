@@ -14,6 +14,8 @@ export type Player = {
     sumMatchPoints: string;
     sumRacksWon: string;
     sumPointsMade: string;
+    twoZeros: string;
+    threeZeros: string;
 }
 
 

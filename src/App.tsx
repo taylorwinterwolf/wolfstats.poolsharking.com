@@ -3,6 +3,7 @@ import { useDataContext } from './context/dataContext';
 import WinPercents from './components/winpercent';
 import TeamMatches from './components/teamMatches';
 import MatchSum from './components/matchSum';
+import TheZeros from './components/theZeros';
 import { groupMatchesByPlayerID } from './functions/functions';
 
 function App() {
@@ -18,6 +19,27 @@ function App() {
       <div className='container mx-auto'>
         <div className='grid grid-cols-4 mb-4'>
           <div>
+            <h3>Total Matches Played</h3>
+            {players.map(player => (
+              <div key={player.id}>
+                <p>{player.completeName} <span className='eightTotalMatches'>{groupedEightMatches[player.id].length}</span> <span className='nineTotalMatches'>{groupedNineMatches[player.id].length}</span></p>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h3>8 Two Zero Leaders</h3>
+            <TheZeros players={players} groupedMatches={groupedEightMatches} category='twoZeros' />
+          </div>
+          <div>
+            <h3>8 Three Zero Leaders</h3>
+            <TheZeros players={players} groupedMatches={groupedEightMatches} category='threeZeros' />
+          </div>
+          <div>
+            <h3>Total Nine Points</h3>
+          </div>
+        </div>
+        <div className='grid grid-cols-4 mb-4'>
+          <div>
             <h3>Total Eight Match Points</h3>
             <MatchSum players={players} groupedMatches={groupedEightMatches} category='matchPoints'/>
           </div>
@@ -26,10 +48,12 @@ function App() {
             <MatchSum players={players} groupedMatches={groupedEightMatches} category='racksWon'/>
           </div>
           <div>
-            <h3>Team Eight Ball Matches</h3>
+            <h3>Total Nine Match Points</h3>
+            <MatchSum players={players} groupedMatches={groupedNineMatches} category='matchPoints' />
           </div>
           <div>
-            <h3>Team Nine Ball Matches</h3>
+            <h3>Total Nine Points</h3>
+            <MatchSum players={players} groupedMatches={groupedNineMatches} category='pointsMade' />
           </div>
         </div>
         <div className='grid grid-cols-4'>

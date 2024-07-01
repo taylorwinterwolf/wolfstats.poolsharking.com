@@ -37,7 +37,7 @@ const MatchSum = (props: MatchSumProps) => {
             {playersSum.map(player => (
                 <div key={player.id}>
                     {props.groupedMatches[player.id] && props.groupedMatches[player.id].length > 0 &&
-                        <p>{player.completeName} {props.category === 'matchPoints' ? player.sumMatchPoints : (props.category === 'racksWon' ? player.sumRacksWon : (props.category === 'pointsMade' ? player.sumPointsMade : null))}</p>
+                        <p>{player.fname} {props.category === 'matchPoints' ? player.sumMatchPoints : (props.category === 'racksWon' ? player.sumRacksWon : (props.category === 'pointsMade' ? player.sumPointsMade : null))}</p>
                     }
                 </div>
             ))}

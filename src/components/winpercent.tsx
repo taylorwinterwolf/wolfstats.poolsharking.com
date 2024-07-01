@@ -30,7 +30,7 @@ const WinPercents = (props: WinPercentsProps) => {
             {props.players.map(player => (
                 <div key={player.id}>
                     {props.groupedMatches[player.id] && props.groupedMatches[player.id].length > 0 &&
-                        <p>{player.completeName} {player.winPercent}% {player.winsCount}/{player.matchCount}</p>
+                        <p>{player.fname} {player.winPercent}% {player.winsCount}/{player.matchCount}</p>
                     }
                 </div>
             ))}

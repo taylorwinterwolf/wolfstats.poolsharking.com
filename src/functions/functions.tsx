@@ -1,7 +1,5 @@
 import { Match } from '../types/matchType';
 
-
-
 export function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match[] } {
     return matches.reduce((acc, match) => {
         if (!acc[match.playerID]) {
@@ -12,6 +10,24 @@ export function groupMatchesByPlayerID(matches: Match[]): { [key: string]: Match
     }, {} as { [key: string]: Match[] });
 }
 
+interface MatchPoints{
+    matchPoints: string;
+    opponentMatchPoints: string;
+}
+type TheZeros = {
+    twoZeros: string;
+    threeZeros: string;
+}
+
+export function getTheZeros<T extends MatchPoints>(matches: T[]): TheZeros{
+    const twoZerosNum = matches.filter(match => match.matchPoints === '2' && match.opponentMatchPoints === '0');
+    const threeZerosNum = matches.filter(match => match.matchPoints === '3' && match.opponentMatchPoints === '0');
+
+    const twoZeros = twoZerosNum.length.toString();
+    const threeZeros = threeZerosNum.length.toString();
+
+    return { twoZeros, threeZeros }
+}
 
 interface MatchSums {
     matchPoints: string;
