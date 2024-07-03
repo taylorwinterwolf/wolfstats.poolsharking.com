@@ -1,38 +1,154 @@
-.App {
-  text-align: center;
+.wrapper {
+  background-color: #d4d3cd;
+}
+.circle {
+  width: 15px;
+  height: 15px;
+  background-color: blue;
+  border-radius: 50%;
+}
+.formatContainer {
+  width: 100%;
+  overflow: hidden;
+}
+.player-wrapper {
+  overflow: hidden;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.player-name {
+  float: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.player-score {
+  float: right;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.nineBall {
+  background-color: #ffd200;
+  color: black;
+}
+
+.eightBall {
+  background-color: black;
+  color: white;
+}
+.eightplays {
+  background-color: black;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nineplays {
+  background-color: #ffd200;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.result {
+  font-weight: bold;
+  text-align: right;
+}
+
+.boldName {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.statsHeader {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.bold {
+  font-weight: bold;
+}
+.emphasis{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.sectionHeader {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
+.defaultBG {
+  background-color: #b8b8b8;
+}
+
+.eightBG {
+  background-color: black;
+  color: white;
+}
+
+.nineBG {
+  background-color: #ffd200;
+}
+
+.statWrapper {
+  line-height: 1.3;
+}
+
+.formatHeader {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.topThree {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.leaderHead {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.teamLogo img {
+  width: 100%;
+}
+
+.bigHeader {
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  margin: 0px;
+}
+
+.underlineLgtBg {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.underlineBlkBg {
+  border-bottom: 1px solid #222222;
+}
+
+.underlineYlBg {
+  border-bottom: 1px solid #e0b900;
+}
+
+.updatedOn {
+  text-align: center;
+  font-size: .9rem;
+  color: #74a47f;
+}
+
+.bg-us {
+  background-color: #74a47f !important;
+}
+
+.bg-them {
+  background-color: #626262 !important;
+}
+
+.bg-tie {
+  background-color: #817c7c !important;
+}
+
+.playerLink {
+  color: #000;
 }

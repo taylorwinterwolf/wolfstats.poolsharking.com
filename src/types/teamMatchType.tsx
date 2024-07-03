@@ -6,6 +6,6 @@ export type TeamMatch = {
     opposingTeamPoints: string,
     opposingTeamID: string,
     sessionID: string,
-    dateAdded: string,
-    datePlayed: string,
+    dateAdded: {seconds: number, nanoseconds: number},
+    datePlayed: { seconds: number, nanoseconds: number },
 }

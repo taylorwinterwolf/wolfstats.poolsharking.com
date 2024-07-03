@@ -9,7 +9,7 @@ type TheZerosProps = {
 }
 
 const TheZeros = (props: TheZerosProps) => {
-
+    let underline = { borderBottom: '1px solid #222222' };
     props.players?.forEach(player => {
         const playerMatches = props.groupedMatches[player.id];
         if (playerMatches && playerMatches.length > 0) {
@@ -30,9 +30,12 @@ const TheZeros = (props: TheZerosProps) => {
 
     return (
         <div>
-            {playerZeros.map(player => (
-                <div key={player.id}>
-                    <p>{player.fname} {props.category === 'twoZeros' ? player.twoZeros : (props.category === 'threeZeros' ? player.threeZeros : null)}</p>
+            {playerZeros.map((player, index) => (
+                <div key={player.id} className={'player-wrapper grid grid-cols-8 ' + (index <= 2 ? 'emphasis' : '')} style={underline}>
+                    <>
+                        <div className='col-span-7'>{player.fname}</div>
+                        <div className='col-span-1 text-right'>{props.category === 'twoZeros' ? player.twoZeros : (props.category === 'threeZeros' ? player.threeZeros : null)}</div>
+                    </>
                 </div>
             ))}
         </div>
