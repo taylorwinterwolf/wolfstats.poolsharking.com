@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="wrapper">
-        <div className='grid grid-cols-3 mb-4'>
+        <div className='grid md:grid-cols-3 mb-4'>
           <div className="p-2">
             <div className="sectionHeader defaultBG">Total Matches Played</div>
             {players.map(player => (
@@ -30,12 +30,11 @@ function App() {
             <div className="sectionHeader nineBG">Team Nine Ball Matches</div>
             <TeamMatches matches={teamninematches} />
           </div>
-          
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid md:grid-cols-2">
           <div className='eightBall'>
-            <div className="formatHeader">Eight Leaders</div>
-            <div className="grid grid-cols-2">
+            <div className="formatHeader">Eight Ball</div>
+            <div className="grid xl:grid-cols-2">
               <div className="p-2">
                 <div className="leaderHead">Win Percent</div>
                 <WinPercents players={players} groupedMatches={groupedEightMatches} format="eight" />
@@ -59,8 +58,8 @@ function App() {
             </div>
           </div>
         <div className='nineBall'>
-            <div className="formatHeader">Nine Leaders</div>
-            <div className="grid grid-cols-2">
+            <div className="formatHeader">Nine Ball</div>
+            <div className="grid xl:grid-cols-2">
               <div className="p-2">
                 <div className="leaderHead">Win Percent</div>
                 <WinPercents players={players} groupedMatches={groupedNineMatches} format="nine" />
