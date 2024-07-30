@@ -34,8 +34,8 @@ const TeamMatches = (props: TeamMatchesProps) => {
                 let opposingTeamPoints = parseFloat(match.opposingTeamPoints)
                 return (
                     <div key={match.id} className="grid grid-cols-12 mb-1">
-                        <div className="xl:col-span-10 md:col-span-9 col-span-10 bold">{match.opposingTeamName}</div>
-                        <div className="xl:col-span-2 md:col-span-3 col-span-2 text-center" style={match.matchResult === '1' ? greenLine : match.matchResult === '0' ? redLine : goldLine}>
+                        <div className="xl:col-span-10 md:col-span-9 col-span-9 bold">{match.opposingTeamName}</div>
+                        <div className="xl:col-span-2 md:col-span-3 col-span-3 text-center" style={match.matchResult === '1' ? greenLine : match.matchResult === '0' ? redLine : goldLine}>
                             {opposingTeamPoints > matchPoints ? opposingTeamPoints : matchPoints} - {opposingTeamPoints < matchPoints ? opposingTeamPoints : matchPoints}
                         </div>
                     </div>

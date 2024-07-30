@@ -27,10 +27,10 @@ const WinPercents = (props: WinPercentsProps) => {
     return (
         <div>
             {props.players.map((player, index) => (
-                <div key={player.id} className={'player-wrapper grid grid-cols-8 ' + (index <= 2 ? 'emphasis' : '')} style={underline}>
+                <div key={player.id} className={'player-wrapper grid sm:grid-cols-8 grid-cols-6 ' + (index <= 2 ? 'emphasis' : '')} style={underline}>
                     {props.groupedMatches[player.id] && props.groupedMatches[player.id].length > 0 &&
                         <>
-                        <div className='col-span-6'>{player.fname}</div>
+                        <div className='sm:col-span-6 col-span-4'>{player.fname}</div>
                         <div className='col-span-1 text-right'>{player.winPercent}%</div>
                         <div className='col-span-1 text-right'>{player.winsCount}/{player.matchCount}</div>
                         </>
