@@ -3,6 +3,7 @@ import useFetchCollection from "../hooks/fetchData";
 import { Match } from "../types/matchType";
 import { Player } from "../types/playerType";
 import { TeamMatch } from "../types/teamMatchType";
+import  { DateUpdated } from "../types/dateUpdatedType";
 
 type DataContextTypes = {
     players: Player[];
@@ -10,6 +11,7 @@ type DataContextTypes = {
     teamninematches: TeamMatch[];
     groupedEightMatches: { [key: string]: Match[] };
     groupedNineMatches: { [key: string]: Match[] };
+    dateupdated: string;
 }
 
 const DataContext = createContext<DataContextTypes | null>(null);
@@ -20,17 +22,32 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const { data: rawteameightmatches } = useFetchCollection<TeamMatch>('eightballteammatches');
     const { data: rawteamninematches } = useFetchCollection<TeamMatch>('nineballteammatches');
     const { data: players } = useFetchCollection<Player>('players');
+    const { data: dateupdatedtimestamp } = useFetchCollection<DateUpdated>('dateupdated');
+    
+    let dateupdated = '';
+    if (dateupdatedtimestamp && dateupdatedtimestamp.length > 0) {
+        const epochTime = convertTimestampToEpoch(dateupdatedtimestamp[0].updated);
+        dateupdated = convertEpochToDate(epochTime);
+    } else {
+        console.error('No date updated found');
+    }
 
-    console.log(rawteameightmatches);
+    function convertEpochToDate(epochTime: number): string {
+        const date = new Date(epochTime);
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const year = String(date.getFullYear()).slice(-2);
+        return `${month}/${day}/${year}`;
+    }
 
-    function convertTimestampToDate(timestamp: { seconds: number, nanoseconds: number }): number {
+    function convertTimestampToEpoch(timestamp: { seconds: number, nanoseconds: number }): number {
         return new Date(timestamp.seconds * 1000).getTime();
     }
 
     function sortTeamMatchesByDate(matches: TeamMatch[]): TeamMatch[] {
         return matches.sort((a, b) => {
-            const dateA = convertTimestampToDate(a.datePlayed);
-            const dateB = convertTimestampToDate(b.datePlayed);
+            const dateA = convertTimestampToEpoch(a.datePlayed);
+            const dateB = convertTimestampToEpoch(b.datePlayed);
             return dateB - dateA;
         });
     }
@@ -50,9 +67,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const teameightmatches = sortTeamMatchesByDate(rawteameightmatches);
     const teamninematches = sortTeamMatchesByDate(rawteamninematches);
 
-    //console.log(teameightmatches);
-
-    const value = { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches};
+    const value = { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches, dateupdated };
     
     return<DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

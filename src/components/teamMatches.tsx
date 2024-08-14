@@ -8,7 +8,7 @@ type TeamMatchesProps = {
 const TeamMatches = (props: TeamMatchesProps) => {
     const teamMatches = props.matches;
     const teamMatchResults = calcMatchResults(props.matches);
-    console.log(teamMatches);
+    //console.log(teamMatches);
     //console.log(teamMatchResults);
 
     const redLine = {

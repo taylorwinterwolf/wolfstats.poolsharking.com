@@ -7,10 +7,11 @@ import TheZeros from './components/theZeros';
 
 function App() {
   const dataContext = useDataContext();
-  const { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches } = dataContext;
+  const { groupedEightMatches, groupedNineMatches, players, teameightmatches, teamninematches, dateupdated } = dataContext;
 
   return (
     <div className="wrapper">
+      <div className="text-center smlText bold p-0 m-0">Updated On: {dateupdated}</div>
         <div className='grid md:grid-cols-3 mb-4'>
           <div className="p-2">
             <div className="sectionHeader defaultBG">Total Matches Played</div>
